@@ -11,6 +11,7 @@ public class SmallestElement {
             arr[i] = sc.nextInt();
         }
         int k = sc.nextInt();
+        sc.close();
         SmallestEle(arr , n , k);
         
     }
