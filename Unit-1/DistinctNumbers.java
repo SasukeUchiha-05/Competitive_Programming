@@ -1,3 +1,4 @@
+//To find the number of distinct elements in window size k
 import java.util.*;
 public class DistinctNumbers{
     public static void main(String args[])

@@ -1,5 +1,5 @@
 import java.util.*;
-
+// to find the dup elements in window size k using hash set
 public class DuplicateWindow {
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
