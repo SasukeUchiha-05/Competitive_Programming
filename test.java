@@ -2,12 +2,25 @@ import java.util.*;
 
 public class test {
     public static void main(String args[]) {
-        int[] arr1 = {10, 13, 15, 20};
+        int[] arr1 = {5,7,5,7,3,9,3};
         int[] arr2 = {12, 17, 30, 40};
         int target = 45;
 
-        int[] res = ClosestPair(arr1, arr2, target);
-        System.out.println("Closest Pair: " + res[0] + ", " + res[1]);
+        // int[] res = ClosestPair(arr1, arr2, target);
+        // System.out.println("Closest Pair: " + res[0] + ", " + res[1]);
+        System.out.println(mystery(19));
+        int res =0;
+        for(int x:arr1)
+        {
+            res^=x;
+        }
+        System.out.println(res);
+
+    }
+
+    private static int mystery(int n){
+        if(n<=0) return 0;
+        return(n%2)+10*mystery(n/2);
     }
 
     private static int[] ClosestPair(int[] arr1, int[] arr2, int target) {
