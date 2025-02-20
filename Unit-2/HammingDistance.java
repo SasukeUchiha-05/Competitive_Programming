@@ -57,7 +57,6 @@ public class HammingDistance {
     public static int sumBitDifferences(int[] nums, int n) {
         int totalSum = 0;
 
-        // Iterate over 32-bit positions
         for (int bit = 0; bit < 32; bit++) {
             int countOnes = 0, countZeros = 0;
 
@@ -69,7 +68,6 @@ public class HammingDistance {
                 }
             }
 
-            // Each bit contributes (countOnes * countZeros * 2) to the total sum
             totalSum += countOnes * countZeros * 2;
         }
 
