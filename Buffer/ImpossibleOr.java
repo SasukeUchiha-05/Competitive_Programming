@@ -35,3 +35,50 @@ Constraints:
 1 <= nums.length <= 10^5
 1 <= nums[i] <= 10^9
  */
+
+ import java.util.*;
+
+ class ImpossibleOr{
+     public static void main (String[] args) {
+         Scanner sc = new Scanner(System.in);
+         int n = sc.nextInt();
+         
+         int[] arr = new int[n];
+         
+         for(int i=0;i<n;i++)
+         {
+             arr[i] = sc.nextInt();
+         }
+         sc.close();
+         
+         System.out.println(impossibleOr(n,arr));
+     }
+     
+     private static int impossibleOr(int n , int[] arr)
+     {
+         Set<Integer> a1 = new HashSet<>();
+         Set<Integer> res = new HashSet<>();
+         
+         for(int num:arr)
+         {
+             Set<Integer> s1 = new HashSet<>(a1);
+             // newSe.add(num);
+             
+             for(int num1 :a1){
+                 s1.add(num1|num);
+             }
+             s1.add(num);
+             a1=s1;
+             // expressible.addAll(newSet);
+             res.addAll(a1);
+         }
+         
+         int missing = 1;
+         
+         while(res.contains(missing)){
+             missing++;
+         }
+         
+         return missing;
+     }
+ }
