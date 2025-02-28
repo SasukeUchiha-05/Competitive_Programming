@@ -56,3 +56,73 @@ Explanation: You can jump directly from index 0 to index 7 which is last index o
 1 <= arr.length <= 5 * 10^4
 -10^8 <= arr[i] <= 10^8 */
 
+import java.util.*;
+
+public class MinJumps{
+    public static void main (String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        
+        for(int i=0;i<n;i++)
+        {
+            arr[i] = sc.nextInt();
+        }
+        sc.close();
+        
+        System.out.println(minJumps(n,arr));
+    }
+    
+    public static int minJumps(int n , int[] arr)
+    {
+        
+        if(n==1) return 0;
+        Map<Integer,List<Integer>> map = new HashMap<>();
+        
+        for(int i=0;i<n;i++)
+        {
+            map.computeIfAbsent(arr[i],k->new ArrayList<>()).add(i);
+        }
+        
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(0);
+        
+        boolean[] visited = new boolean[n];
+        visited[0] = true;
+        int steps = 0;
+        
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            while(size-->0)
+            {
+                int i = queue.poll();
+                
+                if(i == n-1) return steps;
+                
+                if(i+1 <n && !visited[i+1])
+                {
+                    queue.add(i+1);
+                    visited[i+1] = true;
+                }
+                
+                if(i-1>=0 && !visited[i-1]){
+                    queue.add(i-1);
+                    visited[i-1] = true;
+                }
+                
+                if(map.containsKey(arr[i])){
+                    for(int j:map.get(arr[i])){
+                        if(j!=i && !visited[j]){
+                            queue.add(j);
+                            visited[j] = true;
+                        }
+                    }
+                    map.remove(arr[i]);
+                }
+            }
+            steps++;
+        }
+        return -1;
+        
+    }
+}

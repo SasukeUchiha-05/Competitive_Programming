@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     // public static int highestAltitude(int n, int[] arr) {
@@ -21,6 +21,15 @@ public class Main {
         // }
         // int result = highestAltitude(n, arr);
         // System.out.println(result);
+        // Set<Integer> obj = new LinkedHashSet<>();
+        // obj.add(1);
+        // obj.add(23);
+        // obj.add(45);
+        // obj.add(6);
+
+        // String[] array = {"kmit","ngit"};
+        // List<String> 
+        // System.out.println(obj);
 
         
     }
