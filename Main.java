@@ -30,6 +30,7 @@ public class Main {
         // String[] array = {"kmit","ngit"};
         // List<String> 
         // System.out.println(obj);
+        System.out.println(12>>1);
 
         
     }
