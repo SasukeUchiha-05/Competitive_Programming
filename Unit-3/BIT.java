@@ -52,82 +52,94 @@ Sample Output-2:
 83
  */
 import java.util.*;
-class FenwickTree {
+class FenwickTree{
     private int[] BIT;
     private int n;
-
-    // Constructor: Initialize BIT with size (n + 1)
-    public FenwickTree(int size) {
+    private int[] nums;
+    
+    public FenwickTree(int size){
         this.n = size;
-        BIT = new int[n + 1];
-        // BIT[0] =0; // 1-based index
+        BIT = new int[n+1];
     }
-
-    // Function to update index i by adding value x
-    public void init(int i, int x) {
+    
+    public void init(int i,int x){
         i++;
-        while (i <= n) {
-            BIT[i] += x;
-            i += (i & -i);  // Move to the next index
+        while(i<=n){
+            BIT[i]+=x;
+            i+=(i&-i);
         }
     }
-
+    
     public void update(int i,int val){
-        int diff = val-BIT[i];
-        BIT[i] = val;
+        int diff = val-nums[i];
+        nums[i] = val;
         init(i,diff);
     }
-
-    // Function to get the prefix sum from index 1 to i
-    public int prefixSum(int i) {
-        int sum = 0;
+    
+    int prefixSum(int i){
+        int sum =0;
         i++;
-        while (i > 0) {
-            sum += BIT[i];
-            i -= (i & -i);  // Move to parent
+        while(i>0){
+            sum+=BIT[i];
+            i-=(i&-i);
         }
         return sum;
     }
-
-    // Function to get the sum in range [l, r]
-    public int rangeSum(int l, int r) {
-        return prefixSum(r) - prefixSum(l - 1);
+    
+    public int rangeSum(int l,int r){
+        return prefixSum(r)-prefixSum(l-1);
     }
-
-    // Function to build the BIT from an array
-    public void buildBIT(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            init(i , arr[i]); // 1-based indexing
+    
+    public void buildBIT(int[] arr){
+        this.nums = arr;
+        for(int i=0;i<arr.length;i++){
+            init(i,arr[i]);
         }
     }
-
-
-
-    // Print BIT array (for debugging)
-    public void printBIT() {
-        for (int i = 0; i <= n; i++) {
-            System.out.print(BIT[i] + " ");
-        }
-        System.out.println();
+    public void printBIT(){
+           for(int i=0;i<=n;i++){
+            System.out.print(BIT[i]+ " ");  
+           }
+           System.out.println();
     }
-}
+    
+} 
+
 public class BIT{
-    public static void main(String[] args) {
+    public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int q = sc.nextInt();
-        int[] base = new int[n];
-
-        for(int i=0;i<n;i++){
-            base[i] = sc.nextInt();
+        
+        List<Integer> list = new ArrayList<>();
+        
+        int[] arr = new int[n];
+        
+        for(int i=0;i<n;i++)
+        {
+            arr[i] = sc.nextInt();
         }
-        sc.close();
-
         FenwickTree fw = new FenwickTree(n);
-        fw.buildBIT(base);
-
-        // fw.printBIT();
-        // int res = fw.rangeSum(2, 6);
-        // System.out.println(res);
+        fw.buildBIT(arr);
+        fw.printBIT();
+        
+        for(int j=0;j<q;j++)
+        {
+            int choice = sc.nextInt();
+            int arg1 = sc.nextInt();
+            int arg2 = sc.nextInt();
+            
+            if(choice ==1){
+                list.add(fw.rangeSum(arg1,arg2));
+            }
+            else if (choice == 2){
+                fw.update(arg1,arg2);
+                // fw.printBIT();
+            }
+        }
+        
+        for(int i:list){
+            System.out.println(i);
+        }
     }
 }
