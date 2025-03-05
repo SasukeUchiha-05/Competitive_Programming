@@ -71,7 +71,7 @@ class Solution{
             
             else if(Character.isDigit(abbr.charAt(j)))
             {
-                if(abbr.charAt(j) =='0') return false;
+                // if(abbr.charAt(j) =='0') return false;
                 
                 int num = 0;
                 
