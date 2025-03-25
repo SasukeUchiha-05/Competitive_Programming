@@ -80,7 +80,7 @@ class Solution{
             while(x>0){
                 ct+=(x&1);
                 x=x>>1;
-            }
+            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               xxx
             arr[i] = ct;
         }
         return arr;
