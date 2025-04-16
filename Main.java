@@ -1,5 +1,10 @@
 public class Main{
-   public static void main(String[] args){
-      System.out.println(-1/2);
+   int i;
+   Main(int x){
+      this.i=x;
+   }
+   int getvar(){
+      return i;
    }
 }
+public class MainChil

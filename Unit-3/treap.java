@@ -9,7 +9,7 @@ class TreapNode
 }
 
 class treap
-{
+{`x
 	public static TreapNode rightRotate(TreapNode y) 
 	{
 		System.out.println("rightRotate " + y.key);
